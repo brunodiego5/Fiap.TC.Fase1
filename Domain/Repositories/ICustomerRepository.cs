@@ -5,8 +5,8 @@ namespace Domain.Repositories
 {
     public interface ICustomerRepository
     {
-        Cliente CreateCustomer(Cliente cliente);
+        Task CreateCustomer(Cliente cliente);
 
-        Cliente GetCustomerByDocument(CPF cPF);
+        Task<Cliente> GetCustomerByDocument(CPF cPF);
     }
 }

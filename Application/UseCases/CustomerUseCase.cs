@@ -13,14 +13,14 @@ namespace Application.UseCases
             _customerRepository = userRepository;
         }
 
-        public Cliente CreateCustomer(Cliente cliente)
+        public async Task CreateCustomer(Cliente cliente)
         {
-            return _customerRepository.CreateCustomer(cliente);
+            await _customerRepository.CreateCustomer(cliente);
         }
 
-        public Cliente GetCustomerByDocument(CPF cPF)
+        public async Task<Cliente> GetCustomerByDocument(CPF cPF)
         {
-            return _customerRepository.GetCustomerByDocument(cPF);
+            return await _customerRepository.GetCustomerByDocument(cPF);
         }
     }
 }

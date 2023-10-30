@@ -5,8 +5,8 @@ namespace Application.UseCases
 {
     public interface ICustomerUseCase
     {
-        Cliente CreateCustomer(Cliente cliente);
+        Task CreateCustomer(Cliente cliente);
 
-        Cliente GetCustomerByDocument(CPF cPF);
+        Task<Cliente> GetCustomerByDocument(CPF cPF);
     }
 }
