@@ -4,9 +4,9 @@ namespace Domain.ValueObjects
 {
     public class CPF : ValueObject
     {
-        public CPF(string cnpj)
+        public CPF(string numero)
         {
-            Numero = cnpj;
+            Numero = numero;
         }
 
         public string Numero { get; private set; }

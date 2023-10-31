@@ -1,16 +1,19 @@
-﻿using Domain.Entities;
+﻿using Domain.Base;
+using Domain.Entities;
 using Domain.Entities.Enums;
 
 namespace Domain.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository
     {
-        Produto CreateProduct(Produto produto);
+        Task CreateProduct(Produto produto);
 
-        Produto UpdateProduct(Produto produto);
+        Task UpdateProduct(Produto produto, Guid id);
 
-        void DeleteProduct(Guid id);
+        Task DeleteProduct(Guid id);
 
-        IList<Produto> GetProductsByCategory(Categoria categoria);
+        Task<IList<Produto>> GetProductsByCategory(Categoria categoria);
+
+        Task<Produto> GetProductById(Guid id);
     }
 }

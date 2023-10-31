@@ -1,16 +1,17 @@
-﻿using Domain.Entities;
+﻿using Application.IputPorts;
+using Domain.Entities;
 using Domain.Entities.Enums;
 
 namespace Application.UseCases
 {
     public interface IProductUseCase
     {
-        Produto CreateProduct(Produto produto);
+        Task CreateProduct(ProdutoInput produto);
 
-        Produto UpdateProduct(Produto produto);
+        Task UpdateProduct(ProdutoInput produto, Guid id);
 
-        void DeleteProduct(Guid id);
+        Task DeleteProduct(Guid id);
 
-        IList<Produto> GetProductsByCategory(Categoria categoria);
+        Task<IList<Produto>> GetProductsByCategory(Categoria categoria);
     }
 }

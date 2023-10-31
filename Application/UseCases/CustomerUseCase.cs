@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
-using Domain.ValueObjects;
 
 namespace Application.UseCases
 {
@@ -18,9 +17,9 @@ namespace Application.UseCases
             await _customerRepository.CreateCustomer(cliente);
         }
 
-        public async Task<Cliente> GetCustomerByDocument(CPF cPF)
+        public async Task<Cliente> GetCustomerByDocument(string cpf)
         {
-            return await _customerRepository.GetCustomerByDocument(cPF);
+            return await _customerRepository.GetCustomerByDocument(cpf);
         }
     }
 }

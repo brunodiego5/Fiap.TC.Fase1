@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.IputPorts;
+using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Repositories;
 
@@ -13,24 +14,38 @@ namespace Application.UseCases
             _productRepository = productRepository;
         }
 
-        public Produto CreateProduct(Produto produto)
+        public async Task CreateProduct(ProdutoInput produtoInput)
         {
-            return _productRepository.CreateProduct(produto);
+
+            await _productRepository.CreateProduct(
+                new Produto(
+                    Guid.NewGuid(),
+                    produtoInput.Nome,
+                    produtoInput.Categoria, 
+                    produtoInput.Preco, 
+                    produtoInput.Descricao, 
+                    produtoInput.Imagem));
         }
 
-        public void DeleteProduct(Guid id)
+        public async Task DeleteProduct(Guid id)
         {
-            _productRepository.DeleteProduct(id);
+            await _productRepository.DeleteProduct(id);
         }
 
-        public IList<Produto> GetProductsByCategory(Categoria categoria)
+        public async Task<IList<Produto>> GetProductsByCategory(Categoria categoria)
         {
-            return _productRepository.GetProductsByCategory(categoria);
+            return await _productRepository.GetProductsByCategory(categoria);
         }
 
-        public Produto UpdateProduct(Produto produto)
+        public async Task UpdateProduct(ProdutoInput produtoInput, Guid id)
         {
-            return _productRepository.UpdateProduct(produto);
+            await _productRepository.UpdateProduct(new Produto(
+                    id,
+                    produtoInput.Nome,
+                    produtoInput.Categoria,
+                    produtoInput.Preco,
+                    produtoInput.Descricao,
+                    produtoInput.Imagem), id);
         }
     }
 }

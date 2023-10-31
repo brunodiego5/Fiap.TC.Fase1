@@ -1,7 +1,8 @@
 using Application.UseCases;
+using Domain.Producers;
 using Domain.Repositories;
+using Infra.Producers;
 using Infra.Repositories;
-using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,22 +13,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IMongoClient>(sp =>
-{
-    var configuration = sp.GetRequiredService<IConfiguration>();
-    var connectionString = configuration.GetConnectionString("MongoDb");
-    return new MongoClient(connectionString);
-});
-
 #region MyRegion
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 builder.Services.AddTransient<ICustomerUseCase, CustomerUseCase>();
 
-/*builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductUseCase, ProductUseCase>();
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IOrderUseCase, OrderUseCase>();*/
+builder.Services.AddTransient<IOrderUseCase, OrderUseCase>();
+
+builder.Services.AddTransient<IOrderProducerService, OrderProducerService>();
 #endregion
 
 var app = builder.Build();

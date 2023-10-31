@@ -1,18 +1,16 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Domain.ValueObjects;
+using Infra.Base;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace Infra.Repositories
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : Repository<Cliente>, ICustomerRepository
     {
-
-        private readonly IMongoCollection<Cliente> _collection;
-
-        public CustomerRepository(IMongoClient client, string databaseName, string collectionName)
+        public CustomerRepository(IConfiguration configuration) : base(configuration)
         {
-            _collection = client.GetDatabase(databaseName).GetCollection<Cliente>(collectionName);
         }
 
 
@@ -22,9 +20,14 @@ namespace Infra.Repositories
 
         }
 
-        public async Task<Cliente> GetCustomerByDocument(CPF cPF)
+        public async Task<Cliente> GetCustomerByDocument(string cpf)
         {
-            return await _collection.Find(filter => filter.CPF.Numero == cPF.Numero).FirstOrDefaultAsync();
+            return await _collection.Find(filter => filter.CPF.Numero == cpf).FirstOrDefaultAsync();
+        }
+
+        public async Task<Cliente> GetCustomerById(Guid id)
+        {
+            return await _collection.Find(filter => filter.Id == id).FirstOrDefaultAsync();
         }
     }
 }

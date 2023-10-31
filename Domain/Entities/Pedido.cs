@@ -4,12 +4,12 @@ namespace Domain.Entities
 {
     public class Pedido
     {
-        public Pedido(Cliente cliente, string number, DateTime dataCriacao, Status status, IList<ItemPedido> items)
+        public Pedido(Cliente cliente, IList<ItemPedido> items)
         {
             Cliente = cliente;
-            Number = number;
-            DataCriacao = dataCriacao;
-            Status = status;
+            Number = Guid.NewGuid().ToString().Split("-")[0].ToUpper();
+            DataCriacao = DateTime.Now;
+            Status = Status.Criado;
             Items = items;
         }
 

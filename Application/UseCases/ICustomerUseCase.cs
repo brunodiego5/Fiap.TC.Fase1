@@ -7,6 +7,6 @@ namespace Application.UseCases
     {
         Task CreateCustomer(Cliente cliente);
 
-        Task<Cliente> GetCustomerByDocument(CPF cPF);
+        Task<Cliente> GetCustomerByDocument(string cpf);
     }
 }

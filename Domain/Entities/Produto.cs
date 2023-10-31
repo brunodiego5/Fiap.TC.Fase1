@@ -6,14 +6,14 @@ namespace Domain.Entities
 {
     public class Produto : IAggregateRoot
     {
-        public Produto(string nome, Categoria categoria, decimal preco, string descricao, IList<string> imagens)
+        public Produto(Guid id, string nome, Categoria categoria, decimal preco, string descricao, string imagem)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Nome = nome;
             Categoria = categoria;
             Preco = preco;
             Descricao = descricao;
-            Imagens = imagens;
+            Imagem = imagem;
 
             ValidateEntity();
         }
@@ -23,7 +23,7 @@ namespace Domain.Entities
         public Categoria Categoria { get; private set; }
         public decimal Preco { get; private set; }
         public string Descricao { get; private set; }
-        public IList<string> Imagens { get; private set; }
+        public string Imagem { get; private set; }
 
         public void ValidateEntity()
         {

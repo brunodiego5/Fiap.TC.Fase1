@@ -1,11 +1,12 @@
-﻿using Domain.Entities;
+﻿using Application.IputPorts;
+using Domain.Entities;
 
 namespace Application.UseCases
 {
     public interface IOrderUseCase
     {
-        Pedido Checkout(Pedido pedido);
+        Task Checkout(PedidoInput pedido);
 
-        IList<Pedido> GetAllOrder();
+        Task<IList<Pedido>> GetAllOrder();
     }
 }

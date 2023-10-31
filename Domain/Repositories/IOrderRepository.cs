@@ -1,11 +1,12 @@
-﻿using Domain.Entities;
+﻿using Domain.Base;
+using Domain.Entities;
 
 namespace Domain.Repositories
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository
     {
-        Pedido Checkout(Pedido pedido);
+        Task Checkout(Pedido pedido);
 
-        IList<Pedido> GetAllOrder();
+        Task<IList<Pedido>> GetAllOrder();
     }
 }
