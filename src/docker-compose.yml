@@ -2,7 +2,7 @@ services:
   myapi:
     image: brunodiego5/fiap.tc.fase1:latest
     ports:
-      - "5000:80"
+      - "80:80"
     restart: always
     environment:
       - MongoDB__ConnectionString=mongodb://mongo:27017/lanchoneteDB
