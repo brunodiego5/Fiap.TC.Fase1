@@ -5,7 +5,7 @@ services:
       - "80:80"
     restart: always
     environment:
-      - MongoDB__ConnectionString=mongodb://mongo:27017/lanchoneteDB
+      - MongoDBConnection__Server=mongodb://mongo:27017/lanchoneteDB
     depends_on:
       - mongo
 
